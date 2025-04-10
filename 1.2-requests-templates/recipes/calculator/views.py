@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 DATA = {
@@ -28,3 +29,36 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+def omlet(request):
+    servings = int(request.GET.get('servings', 1))
+    recipe = DATA.get('omlet')
+    multi_recipe = {}
+    for ingredient, quantity in recipe.items():
+        multi_recipe[ingredient] = quantity * servings
+    context = {
+        'omlet': multi_recipe
+    }
+    return HttpResponse(f'{context}')
+
+def pasta(request):
+    servings = int(request.GET.get('servings', 1))
+    recipe = DATA.get('pasta')
+    multi_recipe = {}
+    for ingredient, quantity in recipe.items():
+        multi_recipe[ingredient] = quantity * servings
+    context = {
+        'pasta': multi_recipe
+    }
+    return HttpResponse(f'{context}')
+
+def buter(request):
+    servings = int(request.GET.get('servings', 1))
+    recipe = DATA.get('buter')
+    multi_recipe = {}
+    for ingredient, quantity in recipe.items():
+        multi_recipe[ingredient] = quantity * servings
+    context = {
+        'buter': multi_recipe
+    }
+    return HttpResponse(f'{context}')
